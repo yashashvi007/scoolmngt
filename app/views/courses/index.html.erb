@@ -1,0 +1,4 @@
+<%= @courses.each do |course| %> 
+  <p> <%= course.title %> </p>
+  <a href="<%= course_path(course) %>" > show </a>
+<% end %> 

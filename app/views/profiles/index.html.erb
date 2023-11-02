@@ -1,0 +1,9 @@
+<h1>Priofile</h1>
+
+<%= link_to "Create Profile",  new_profile_path %>
+<%= link_to "Create Course", new_course_path %>
+
+<%= @profiles.each do |profile| %> 
+  <h1><%= profile.name %></h1>
+  <p>Edit <%= link_to "Edit profile", edit_profile_path(profile) %> </p>
+<% end %>

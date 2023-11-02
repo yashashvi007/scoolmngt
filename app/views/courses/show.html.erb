@@ -1,0 +1,7 @@
+<h1> <%= @course.title %> </h1>
+<p> <%= @course.description %> </p>
+
+<h1> <%= @profile.email %> </h1>
+
+<%= button_to 'Enroll',  course_enrollments_path(@course) , method: :post %>
+

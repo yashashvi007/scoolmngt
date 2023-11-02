@@ -1,0 +1,21 @@
+<h1>Create course</h1>
+
+<%= form_with model: @course do |form| %> 
+  <%= form.label :title %>
+  <%= form.text_field :title %> 
+
+  <%= form.label :description %> 
+  <%= form.text_area :description %> 
+
+  <%= form.label :fees%>
+  <%= form.number_field :fees %> 
+
+
+  <select name="user_id">
+    <%= @profiles.each do |profile| %> 
+     <option value="<%= profile.id %>"> <%= profile.email %></option>
+    <% end %> 
+  </select>
+
+  <%= form.submit %>
+<% end %>
