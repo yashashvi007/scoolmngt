@@ -4,6 +4,8 @@
   <p> <%= flash[:error] %> </p>
 <% end %>
 
+<%= link_to 'Admin login', new_admin_session_path %>
+
 <%= form_with(model: @profile, url: sessions_path) do |form| %>
   <div>
     <%= form.label :email %><br>

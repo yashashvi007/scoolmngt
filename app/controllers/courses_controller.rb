@@ -1,12 +1,16 @@
 class CoursesController < ApplicationController
-
   def index
     @courses = Course.all    
   end
 
   def new
-    @course = Course.new
-    @profiles = Profile.all
+    if admin_signed_in?  
+      @course = Course.new
+      @profiles = Profile.all
+    else  
+      redirect_to login_path
+    end
+    
   end
 
   def create
@@ -26,7 +30,7 @@ class CoursesController < ApplicationController
 
   private 
   def course_params
-    params.require(:course).permit(:title, :description, :fees)
+    params.require(:course).permit(:title, :description, :fees, :course_image)
   end
 
   private 

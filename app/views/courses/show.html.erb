@@ -3,5 +3,7 @@
 
 <h1> <%= @profile.email %> </h1>
 
+<%= image_tag @course.course_image %>
+
 <%= button_to 'Enroll',  course_enrollments_path(@course) , method: :post %>
 

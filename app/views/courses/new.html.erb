@@ -10,6 +10,9 @@
   <%= form.label :fees%>
   <%= form.number_field :fees %> 
 
+  <%= form.label :course_image %>  <br>
+  <%= form.file_field :course_image %>
+
 
   <select name="user_id">
     <%= @profiles.each do |profile| %> 

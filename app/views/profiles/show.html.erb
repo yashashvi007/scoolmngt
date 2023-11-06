@@ -1,3 +1,7 @@
-<h1>Create profile</h1>
+<h1>Your profile</h1>
 
 <%= render 'form' %>
+
+<%= @courses.each do |course| %>
+  <p> <%= course.title %> </p>
+<% end %>

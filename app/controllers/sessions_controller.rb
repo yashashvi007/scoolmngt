@@ -11,14 +11,21 @@ class SessionsController < ApplicationController
   def create
       @profile = Profile.find_by(email: params[:profile][:email])
       if @profile == nil 
-        @profile = Profile.new
-        
+        @profile = Profile.new 
       elsif @profile.present? && @profile.password == params[:profile][:password] 
         session[:profile_id] = @profile.id 
-        redirect_to root_path, flash: {success: 'Logged in successfully'}
+        redirect_to courses_path, flash: {success: 'Logged in successfully'}
       else 
         render :new, flash: {error:  "Porfile not found"}
       end
+  end 
+
+  def edit
+     p "in edit mode"
+  end
+
+  def update
+     @profile = Profile.find
   end
 
   def destroy

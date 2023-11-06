@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "profiles#index"
-
-
+  root "sessions#new"
   resources :profiles
   get "/login" , to: "sessions#new"
   post "/login" , to: "sessions#create", as: "sessions"
