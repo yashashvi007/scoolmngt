@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
     else 
       @profile = Profile.new
     end
-    
   end
 
   def create

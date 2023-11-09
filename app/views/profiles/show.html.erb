@@ -2,6 +2,19 @@
 
 <%= render 'form' %>
 
-<%= @courses.each do |course| %>
-  <p> <%= course.title %> </p>
-<% end %>
+<table class="table" >
+  <thead>
+    <tr>
+      <th scope="col"  >Course name</th>
+      <th scope="col"  >Course description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+    <tr>
+      <td> <p> <%= course.title %> </p> </td> 
+      <td> <p> <%= course.description %> </p> </td>
+    </tr>
+    <% end %> 
+  </tbody>
+</table>

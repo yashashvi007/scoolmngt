@@ -1,9 +1,30 @@
-<h1> <%= @course.title %> </h1>
-<p> <%= @course.description %> </p>
+<% if @course.course_image %>
+  <h3>Course Image</h3>
+  <%= image_tag @course.course_image , :style => "width: 600px" %>
+<% end %>
 
-<h1> <%= @profile.email %> </h1>
+<table class="table" >
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Instructor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @course.title %></td>
+      <td> <p> <%= @course.description %> </p> </td>
+      <td> <p><%= @profile.email %></p> </td>
+      <td> <p><%= @course.fees %></p> </td>
+    </tr>
+  </tbody>
+</table>
 
-<%= image_tag @course.course_image %>
 
-<%= button_to 'Enroll',  course_enrollments_path(@course) , method: :post %>
+<% if session[:profile_id] %> 
+  <%= button_to 'Enroll',  course_enrollments_path(@course) , method: :post %>
+<% else %>
+   <p>Please login to enroll</p>
+<% end %> 
 

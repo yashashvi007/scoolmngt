@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
       @q = Profile.ransack(params[:q])
       @profiles = @q.result(distinct: true).page(params[:page]).per(5)
     else  
-      redirect_to root_path
+      redirect_to login_path
     end
   end
 
@@ -39,7 +39,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     if @profile.save
       ProfileLoginMailer.with(profile: @profile).profile_login_link.deliver_now
-      redirect_to root_path
+      redirect_to profiles_path
     else  
       render :new ,status: :unprocessable_entity
     end

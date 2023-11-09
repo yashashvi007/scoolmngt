@@ -1,4 +1,22 @@
-<%= @courses.each do |course| %> 
-  <p> <%= course.title %> </p>
-  <a href="<%= course_path(course) %>" > show </a>
-<% end %> 
+<% if session[:profile_id] %>
+  <h1>   <%= link_to "Your profile", profile_path(@profile) %> </h1>
+<% end %>
+
+<table class="table" >
+  <thead>
+    <tr>
+      <th scope="col" >Course Title</th>
+      <th scope="col" >More Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %> 
+    <tr>
+      <td><%= course.title %> </td>
+      <td> <a href="<%= course_path(course) %>">Show</a> </td>
+    </tr>
+      
+    <% end %> 
+  </tbody>
+</table>
+

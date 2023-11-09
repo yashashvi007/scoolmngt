@@ -1,26 +1,40 @@
-<h1>Profile</h1>
+
+  <h1>Profiles</h1>
 
 <%= search_form_for @q do |f| %>
 
   # Search if the name field contains...
   <%= f.label :name_cont %>
   <%= f.search_field :name_cont %>
-
-  
   <%= f.submit %>
 <% end %>
 
-<%= link_to "Create Profile",  new_profile_path %>
-<%= link_to "Create Course", new_course_path %>
+<%= link_to "Create Profile",  new_profile_path , class: 'link' %>
+<%= link_to "Create Course", new_course_path, class: 'link'  %>
+<%= link_to "Courses", courses_path, class: 'link' %>
 
-<%= @profiles.each do |profile| %> 
-  <h1><%= profile.name %></h1>
-  <p>Edit <%= link_to "Edit profile", edit_profile_path(profile) %> </p>
- 
-  <p><%= link_to "Destroy", profile_path(profile), data: {
-    turbo_method: :delete,
-    turbo_confirm: "Are you sure?"
-  } %></p>
-<% end %>
+<table class="table">
+
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @profiles.each do |profile| %> 
+      <tr>
+        <td>Profile name: <%= profile.name %></td>
+        <td>Email: <%= profile.email %> </td>
+        <td> Edit <%= link_to "Edit profile", edit_profile_path(profile) %> </td>
+        <td><%= link_to "Destroy", profile_path(profile), data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        } %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
 
 <%= paginate @profiles %>

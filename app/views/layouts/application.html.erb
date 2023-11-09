@@ -7,22 +7,66 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
 
-    <%= link_to "Logout", logout_path %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand p-2" href="#">School mngmt</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav d-flex flex-row justify-content-end align-items-center">
+          <% if admin_signed_in? %>
+          Hello <%= " " %>  <strong> <%= current_admin.email %> </strong>
+          <li class="nav-item active">
+           <%= link_to "Admin panel", profiles_path, class: "nav-link" %> 
+          </li>
+          <%= link_to "Edit", edit_admin_registration_path, class: "nav-link" %> 
+          <%= link_to 'Admin Logout', destroy_admin_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
 
-    <% if admin_signed_in? %> 
-      <%= link_to 'Admin Logout', destroy_admin_session_path , data: { turbo_method: :delete } %>
-    <% else %> 
-      <%= link_to 'Admin Login', new_admin_session_path %>
-      <%= link_to "Admin Sign up", new_admin_registration_path %> 
-    <% end %> 
+          <% elsif session[:profile_id] %> 
+
+             
+            <li class="nav-item active">
+              <a class="nav-link" href="#">   <%= link_to "Logout", logout_path %>  </a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link" href="#">  <%= link_to 'Admin Login', new_admin_session_path, class: "nav-link" %>  </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">   <%= link_to "Admin Sign up", new_admin_registration_path , class: "nav-link"%>  </a>
+            </li>
+
+          <% else %>
+
+          <li class="nav-item active">
+            <a class="nav-link" href="#">  <%= link_to 'User Login', sessions_path, class: "nav-link" %>  </a>
+          </li>
+        
+          <li class="nav-item active">
+            <a class="nav-link" href="#">  <%= link_to 'Admin Login', new_admin_session_path, class: "nav-link" %>  </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">   <%= link_to "Admin Sign up", new_admin_registration_path , class: "nav-link"%>  </a>
+          </li>
+          <% end %>
+        </ul>
+        
+      </div>
+    </nav>
+
+   
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <%= yield %>
+    <div class="container-fluid" >
+      <%= yield %>
+    </div>
   </body>
 </html>
